@@ -24,7 +24,7 @@ describe Instagram::Client do
 
         it "should return extended information of a given media item" do
           tag = @client.tag('cat')
-          expect(tag.name).to eq('cat')
+          expect(tag[:name]).to eq('cat')
         end
       end
 
@@ -46,7 +46,7 @@ describe Instagram::Client do
         it "should return a list of media taken at a given location" do
           media = @client.tag_recent_media('cat')
           expect(media).to be_a Array
-          expect(media.first.user.username).to eq("amandavan")
+          expect(media.first[:user][:username]).to eq("amandavan")
         end
 
       end
@@ -71,7 +71,7 @@ describe Instagram::Client do
         it "should return an array of user search results" do
           tags = @client.tag_search('cat')
           expect(tags).to be_a Array
-          expect(tags.first.name).to eq("cats")
+          expect(tags.first[:name]).to eq("cats")
         end
       end
     end

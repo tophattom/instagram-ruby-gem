@@ -5,12 +5,12 @@ module Instagram
       data = response_hash.data.dup rescue response_hash
       data.extend( self )
       data.instance_exec do
-        %w{pagination meta}.each do |k|
-          response_hash.public_send(k).tap do |v|
+        %i(pagination meta).each do |k|
+          response_hash.public_send(:[], k).tap do |v|
             instance_variable_set("@#{k}", v) if v
           end
         end
-        @ratelimit = ::Hashie::Mash.new(ratelimit_hash)
+        @ratelimit = ratelimit_hash
       end
       data
     end

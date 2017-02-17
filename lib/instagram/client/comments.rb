@@ -17,7 +17,7 @@ module Instagram
       # @see http://instagram.com/developer/endpoints/comments/#get_media_comments
       def media_comments(id, *args)
         response = get("media/#{id}/comments")
-        response
+        response[:data]
       end
 
       # Creates a comment for a given media item ID
@@ -36,7 +36,7 @@ module Instagram
       # @see http://instagram.com/developer/endpoints/comments/#post_media_comments
       def create_media_comment(id, text, options={})
         response = post("media/#{id}/comments", options.merge(:text => text), signature=true)
-        response
+        response[:data]
       end
 
       # Deletes a comment for a given media item ID
@@ -55,7 +55,7 @@ module Instagram
       # @see http://instagram.com/developer/endpoints/comments/#delete_media_comments
       def delete_media_comment(media_id, comment_id, options={})
         response = delete("media/#{media_id}/comments/#{comment_id}", options, signature=true)
-        response
+        response[:data]
       end
     end
   end

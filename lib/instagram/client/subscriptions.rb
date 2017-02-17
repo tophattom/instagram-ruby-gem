@@ -19,7 +19,7 @@ module Instagram
       # @see https://api.instagram.com/developer/realtime/
       def subscriptions(options={})
         response = get("subscriptions", options.merge(:client_secret => client_secret))
-        response
+        response[:data]
       end
 
       # Creates a real-time subscription
@@ -64,7 +64,7 @@ module Instagram
           o[:aspect] = aspect || o[:aspect] || "media"
         }
         response = post("subscriptions", options.merge(:client_secret => client_secret), signature=true)
-        response
+        response[:data]
       end
 
       # Deletes a real-time subscription
@@ -93,7 +93,7 @@ module Instagram
         subscription_id = args.first
         options.merge!(:id => subscription_id) if subscription_id
         response = delete("subscriptions", options.merge(:client_secret => client_secret), signature=true)
-        response
+        response[:data]
       end
 
       # As a security measure (to prevent DDoS attacks), Instagram sends a verification request to your server

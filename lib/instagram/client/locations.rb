@@ -15,7 +15,7 @@ module Instagram
       # @see http://instagram.com/developer/endpoints/locations/#get_locations
       def location(id, *args)
         response = get("locations/#{id}")
-        response
+        response[:data]
       end
 
       # Returns a list of recent media items for a given Instagram location
@@ -36,7 +36,7 @@ module Instagram
       def location_recent_media(id, *args)
         options = args.last.is_a?(Hash) ? args.pop : {}
         response = get("locations/#{id}/media/recent", options)
-        response
+        response[:data]
       end
 
       # Returns Instagram locations within proximity of given lat,lng or Facebook Places ID
@@ -68,7 +68,7 @@ module Instagram
           lat, lng, distance = args
           response = get('locations/search', options.merge(:lat => lat, :lng => lng, :distance => distance))
         end
-        response
+        response[:data]
       end
     end
   end

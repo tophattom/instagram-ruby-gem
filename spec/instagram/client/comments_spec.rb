@@ -26,7 +26,7 @@ describe Instagram::Client do
         it "should return an array of user search results" do
           comments = @client.media_comments(777)
           expect(comments).to be_a Array
-          expect(comments.first.text).to eq("Vet visit")
+          expect(comments.first[:text]).to eq("Vet visit")
         end
       end
 
@@ -47,7 +47,7 @@ describe Instagram::Client do
 
         it "should return the new comment when successful" do
           comment = @client.create_media_comment(777, "hi there")
-          expect(comment.text).to eq("hi there")
+          expect(comment[:text]).to eq("hi there")
         end
       end
 

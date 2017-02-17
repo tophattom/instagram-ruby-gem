@@ -22,7 +22,7 @@ module Instagram
       def geography_recent_media(id, *args)
         options = args.last.is_a?(Hash) ? args.pop : {}
         response = get("geographies/#{id}/media/recent", options)
-        response
+        response[:data]
       end
     end
   end

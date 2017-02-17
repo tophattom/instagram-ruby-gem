@@ -19,7 +19,7 @@ module Instagram
         options = args.last.is_a?(Hash) ? args.pop : {}
         id = args.first || 'self'
         response = get("users/#{id}", options)
-        response
+        response[:data]
       end
 
       # Returns users that match the given query
@@ -36,7 +36,7 @@ module Instagram
       #   Instagram.user_search("Shayne Sweeney")
       def user_search(query, options={})
         response = get('users/search', options.merge(:q => query))
-        response
+        response[:data]
       end
 
       # Returns a list of users whom a given user follows
@@ -64,7 +64,7 @@ module Instagram
         options = args.last.is_a?(Hash) ? args.pop : {}
         id = args.first || "self"
         response = get("users/#{id}/follows", options)
-        response
+        response[:data]
       end
     end
 
@@ -93,7 +93,7 @@ module Instagram
       options = args.last.is_a?(Hash) ? args.pop : {}
       id = args.first || "self"
       response = get("users/#{id}/followed-by", options)
-      response
+      response[:data]
     end
 
     # Returns a list of users who have requested the currently authorized user's permission to follow
@@ -113,7 +113,7 @@ module Instagram
     # @rate_limited true
     def user_requested_by()
       response = get("users/self/requested-by")
-      response
+      response[:data]
     end
 
     # Returns most recent media items from the currently authorized user's feed
@@ -161,7 +161,7 @@ module Instagram
       options = args.last.is_a?(Hash) ? args.pop : {}
       id = args.first || "self"
       response = get("users/#{id}/media/recent", options)
-      response
+      response[:data]
     end
 
     # Returns a list of media items liked by the current user
@@ -179,7 +179,7 @@ module Instagram
     # @rate_limited true
     def user_liked_media(options={})
       response = get("users/self/media/liked", options)
-      response
+      response[:data]
     end
 
     # Returns information about the current user's relationship (follow/following/etc) to another user
@@ -196,7 +196,7 @@ module Instagram
     # @rate_limited true
     def user_relationship(id, options={})
       response = get("users/#{id}/relationship", options)
-      response
+      response[:data]
     end
 
     # Create a follows relationship between the current user and the target user
@@ -214,7 +214,7 @@ module Instagram
     def follow_user(id, options={})
       options[:action] = "follow"
       response = post("users/#{id}/relationship", options, signature=true)
-      response
+      response[:data]
     end
 
     # Destroy a follows relationship between the current user and the target user
@@ -232,7 +232,7 @@ module Instagram
     def unfollow_user(id, options={})
       options[:action] = "unfollow"
       response = post("users/#{id}/relationship", options, signature=true)
-      response
+      response[:data]
     end
 
     # Block a relationship between the current user and the target user
@@ -250,7 +250,7 @@ module Instagram
     def block_user(id, options={})
       options[:action] = "block"
       response = post("users/#{id}/relationship", options, signature=true)
-      response
+      response[:data]
     end
 
     # Remove a relationship block between the current user and the target user
@@ -268,7 +268,7 @@ module Instagram
     def unblock_user(id, options={})
       options[:action] = "unblock"
       response = post("users/#{id}/relationship", options, signature=true)
-      response
+      response[:data]
     end
 
     # Approve a relationship request between the current user and the target user
@@ -286,7 +286,7 @@ module Instagram
     def approve_user(id, options={})
       options[:action] = "approve"
       response = post("users/#{id}/relationship", options, signature=true)
-      response
+      response[:data]
     end
 
     # Deny a relationship request between the current user and the target user
@@ -304,7 +304,7 @@ module Instagram
     def deny_user(id, options={})
       options[:action] = "deny"
       response = post("users/#{id}/relationship", options, signature=true)
-      response
+      response[:data]
     end
   end
 end

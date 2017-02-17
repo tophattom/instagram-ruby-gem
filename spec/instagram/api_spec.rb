@@ -186,8 +186,8 @@ describe Instagram::API do
 
       it "should return a hash with an access_token and user data" do
         response = @client.get_access_token(code="C", :redirect_uri => "http://localhost:4567/oauth/callback")
-        expect(response.access_token).to eq("at")
-        expect(response.user.username).to eq("mikeyk")
+        expect(response[:access_token]).to eq("at")
+        expect(response[:user][:username]).to eq("mikeyk")
       end
     end
 

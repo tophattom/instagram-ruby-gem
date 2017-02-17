@@ -24,7 +24,7 @@ describe Instagram::Client do
 
         it "should return extended information of a given location" do
           location = @client.location(514276)
-          expect(location.name).to eq("Instagram")
+          expect(location[:name]).to eq("Instagram")
         end
       end
 
@@ -46,7 +46,7 @@ describe Instagram::Client do
         it "should return a list of media taken at a given location" do
           media = @client.location_recent_media(514276)
           expect(media).to be_a Array
-          expect(media.first.user.username).to eq("josh")
+          expect(media.first[:user][:username]).to eq("josh")
         end
       end
 
@@ -70,7 +70,7 @@ describe Instagram::Client do
         it "should return an array of user search results" do
           locations = @client.location_search("37.7808851", "-122.3948632")
           expect(locations).to be_a Array
-          expect(locations.first.name).to eq("Instagram")
+          expect(locations.first[:name]).to eq("Instagram")
         end
       end
 
@@ -94,7 +94,7 @@ describe Instagram::Client do
         it "should return an array of user search results" do
           locations = @client.location_search("37.7808851", "-122.3948632", "5000")
           expect(locations).to be_a Array
-          expect(locations.first.name).to eq("Instagram")
+          expect(locations.first[:name]).to eq("Instagram")
         end
       end
 
@@ -118,7 +118,7 @@ describe Instagram::Client do
         it "should return an array of user search results" do
           locations = @client.location_search("3fd66200f964a520c5f11ee3")
           expect(locations).to be_a Array
-          expect(locations.first.name).to eq("Schiller's Liquor Bar")
+          expect(locations.first[:name]).to eq("Schiller's Liquor Bar")
         end
       end
 

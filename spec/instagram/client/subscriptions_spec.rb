@@ -26,7 +26,7 @@ describe Instagram::Client do
         it "should return an array of subscriptions" do
           subscriptions = @client.subscriptions
           expect(subscriptions).to be_a Array
-          expect(subscriptions.first.object).to eq("user")
+          expect(subscriptions.first[:object]).to eq("user")
         end
       end
 
@@ -47,7 +47,7 @@ describe Instagram::Client do
 
         it "should return the new subscription when successful" do
           subscription = @client.create_subscription("user", :callback_url => "http://example.com/instagram/callback")
-          expect(subscription.object).to eq("user")
+          expect(subscription[:object]).to eq("user")
         end
       end
 

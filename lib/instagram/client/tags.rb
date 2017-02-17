@@ -15,7 +15,7 @@ module Instagram
       # @see http://instagram.com/developer/endpoints/tags/#get_tags
       def tag(tag, *args)
         response = get("tags/#{tag}")
-        response
+        response[:data]
       end
 
       # Returns a list of recent media items for a given Instagram tag
@@ -35,7 +35,7 @@ module Instagram
       def tag_recent_media(id, *args)
         options = args.last.is_a?(Hash) ? args.pop : {}
         response = get("tags/#{id}/media/recent", options, false, false, false)
-        response
+        response[:data]
       end
 
       # Returns a list of tags starting with the given search query
@@ -52,7 +52,7 @@ module Instagram
       #   Instagram.tag_search("cat")
       def tag_search(query, options={})
         response = get('tags/search', options.merge(:q => query))
-        response
+        response[:data]
       end
     end
   end

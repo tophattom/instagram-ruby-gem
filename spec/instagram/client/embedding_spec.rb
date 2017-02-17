@@ -23,7 +23,7 @@ describe Instagram::Client do
 
         it "should return the oembed information for an instagram media url" do
           oembed = @client.oembed("http://instagram.com/p/abcdef")
-          expect(oembed.media_id).to eq("123657555223544123_41812344")
+          expect(oembed[:media_id]).to eq("123657555223544123_41812344")
         end
 
         it "should return nil if a URL is not provided" do

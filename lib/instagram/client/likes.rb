@@ -17,7 +17,7 @@ module Instagram
       # @see http://instagram.com/developer/endpoints/likes/#get_media_likes
       def media_likes(id, *args)
         response = get("media/#{id}/likes")
-        response
+        response[:data]
       end
 
       # Issues a like by the currently authenticated user, for a given media item ID
@@ -35,7 +35,7 @@ module Instagram
       # @see http://instagram.com/developer/endpoints/likes/#post_likes
       def like_media(id, options={})
         response = post("media/#{id}/likes", options, signature=true)
-        response
+        response[:data]
       end
 
       # Removes the like on a givem media item ID for the currently authenticated user
@@ -51,7 +51,7 @@ module Instagram
       # @see http://instagram.com/developer/endpoints/likes/#delete_likes
       def unlike_media(id, options={})
         response = delete("media/#{id}/likes", options, signature=true)
-        response
+        response[:data]
       end
     end
   end

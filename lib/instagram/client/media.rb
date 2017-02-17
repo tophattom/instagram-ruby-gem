@@ -18,7 +18,7 @@ module Instagram
       def media_item(*args)
         id = args.first || 'self'
         response = get("media/#{id}")
-        response
+        response[:data]
       end
 
       # Returns extended information of a given media item
@@ -37,7 +37,7 @@ module Instagram
       def media_shortcode(*args)
         shortcode = args.first
         response = get("media/shortcode/#{shortcode}", {}, false, false, true)
-        response
+        response[:data]
       end
 
       # Returns a list of the overall most popular media
@@ -57,7 +57,7 @@ module Instagram
         options = args.last.is_a?(Hash) ? args.pop : {}
         id = args.first || "self"
         response = get("media/popular", options)
-        response
+        response[:data]
       end
 
       # Returns media items within proximity of given lat,lng
@@ -75,7 +75,7 @@ module Instagram
       # @rate_limited true
       def media_search(lat, lng, options={})
         response = get('media/search', options.merge(:lat => lat, :lng => lng))
-        response
+        response[:data]
       end
     end
   end

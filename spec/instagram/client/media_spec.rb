@@ -24,7 +24,7 @@ describe Instagram::Client do
 
         it "should return extended information of a given media item" do
           media = @client.media_item(18600493)
-          expect(media.user.username).to eq("mikeyk")
+          expect(media[:user][:username]).to eq("mikeyk")
         end
       end
 
@@ -45,7 +45,7 @@ describe Instagram::Client do
 
         it "should return extended information of a given media item" do
           media = @client.media_shortcode('BG9It')
-          expect(media.user.username).to eq('mikeyk')
+          expect(media[:user][:username]).to eq('mikeyk')
         end
       end
 
@@ -67,7 +67,7 @@ describe Instagram::Client do
         it "should return popular media items" do
           media_popular = @client.media_popular
           expect(media_popular).to be_a Array
-          media_popular.first.user.username == "babycamera"
+          expect(media_popular.first[:user][:username]).to eq('elyely')
         end
       end
 
@@ -91,7 +91,7 @@ describe Instagram::Client do
         it "should return an array of user search results" do
           media_search = @client.media_search("37.7808851", "-122.3948632")
           expect(media_search).to be_a Array
-          expect(media_search.first.user.username).to eq("mikeyk")
+          expect(media_search.first[:user][:username]).to eq("mikeyk")
         end
       end
     end

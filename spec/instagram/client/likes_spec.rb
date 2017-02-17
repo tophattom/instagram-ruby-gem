@@ -26,7 +26,7 @@ describe Instagram::Client do
         it "should return an array of user search results" do
           comments = @client.media_likes(777)
           expect(comments).to be_a Array
-          expect(comments.first.username).to eq("chris")
+          expect(comments.first[:username]).to eq("chris")
         end
       end
 
